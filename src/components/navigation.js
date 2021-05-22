@@ -32,9 +32,9 @@ const myStack = () => {
              color: '#fff'
           },
           headerBackImage: () => <Ionicons name="md-chevron-back-circle-outline" size={23} color="white" />,
-          headerBackTitle: ' ',
-          headerLeftContainerStyle: {
-            padding: 20
+          headerBackTitleVisible: false,
+          headerContainerStyle: {
+            paddingLeft: 20
           }
         }}
       />
