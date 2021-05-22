@@ -1,43 +1,79 @@
-import React, {useContext} from 'react' 
-import {View, Text, StyleSheet, Image} from 'react-native'
+import React, {useEffect, useState} from 'react'
+import {View, Text, StyleSheet, Image, ScrollView} from 'react-native'
 
-import StoreContext from '../context/StoreContext'
-
+import request from '../api/request'
+import Countdown from '../components/Countdown'
 
 const ProductDetail = ({route, navigation}) => {
-	const {products} = useContext(StoreContext)
+  const [product, setProduct] = useState(null)
+  const productId = route.params.id
+  console.log(productId)
 
-	const product = products.find(item => item._id === route.params.id)
-	// const product = {title: 'Bra', price: 315}
+  const getProduct = async id => {
+    const response = await request.get(`/api/products/${id}`)
+    console.log(response)
+    setProduct(response.data)
+  }
 
-	return <View>
-		<Text style={styles.sale}>Скидка до {product.salesTime.day}. 0{product.salesTime.month}!!!</Text>
-		<Image style={styles.image} source={{uri: product.image}} />
-		<Text style={styles.text}>{product.title}</Text>
-		<Text style={styles.text}>Цена - {product.price}</Text>
-		<Text style={styles.text}>Арт/Код: {product.vendorCode} </Text>
-	</View> 
+  useEffect(() => {
+    getProduct(productId)
+  }, [])
+
+  if (!product) {
+    return null
+  }
+
+  return <View style={styles.container}>
+    <ScrollView>
+      <Countdown />
+      <View style={styles.imageContainer}>
+        <Image style={styles.image} source={{uri: product.image}} />
+      </View>
+      <View style={styles.info}>
+        <Text style={styles.title}>{product.title}</Text>
+        <Text style={styles.price}>{product.price} &#8381;</Text>
+        <Text style={styles.text}>Арт/Код: {product.vendorCode} </Text>
+      </View>
+    </ScrollView>
+  </View>
 }
 
 const styles = StyleSheet.create({
-	image: {
-		width: 250,
-		height: 250,
-		marginBottom: 15
-	},
-	text: {
-		fontSize: 20,
-		marginBottom: 10
-	},
-	sale: {
-		fontSize: 20,
-		color: 'red',
-		marginVertical: 10
-	},
-	vendorCode: {
-		fontSize: 20,
-		color: 'grey'
-	}
+  container: {
+    backgroundColor: '#fff'
+  },
+  image: {
+    width: '100%',
+    height: 325
+  },
+  imageContainer: {
+    borderBottomColor: '#E6E6E6',
+    borderBottomWidth: 2,
+    marginBottom: 15
+  },
+  info: {
+    paddingHorizontal: 20
+  },
+  price: {
+    fontWeight: 'bold',
+    fontSize: 20,
+    marginBottom: 10
+  },
+  title: {
+  fontWeight: 'bold',
+  fontSize: 14,
+  marginBottom: 21,
+  color: '#393939'
+  },
+  sale: {
+    fontSize: 20,
+    color: 'red',
+    marginVertical: 10
+  },
+  vendorCode: {
+    fontSize: 20,
+    color: 'grey'
+  }
 })
 
 export default ProductDetail

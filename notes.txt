@@ -6,5 +6,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 {"_id":{"$oid":"60a035013c7b4b0b9c71f6d2"},"title":"Подсвечник на 2 свечи бронза 15 см","price":{"$numberDouble":"545.5"},"image":"https://expertpodarok.ru/wa-data/public/shop/products/51/19/1951/images/31437/31437.970.png","salesTime":{"month":{"$numberInt":"5"},"day":{"$numberInt":"9"}},"needToBuy":{"$numberInt":"250"},"bought":{"$numberInt":"77"},"vendorCode":{"$numberInt":"345732"},"__v":{"$numberInt":"0"}}
 
 
-пагинация 
+пагинация
 зашивать номер в каждый товар и подкгружать через уравнение по 10 элементов срезом FlatList
+
+https://scientificrussia.ru/data/auto/material/large-preview-zhiraf_4.jpg
