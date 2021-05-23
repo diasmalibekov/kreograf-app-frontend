@@ -11,7 +11,7 @@ const ProductList = ({navigation}) => {
     fetchProducts(page)
   }, [page])
   return (
-    <View>
+    <View style={styles.container}>
       <FlatList
         data={products}
         keyExtractor={product => product._id}
@@ -19,9 +19,13 @@ const ProductList = ({navigation}) => {
           return (
             <TouchableOpacity onPress={() => navigation.navigate('Получатель', {id: item._id})}>
               <View style={styles.product}>
-                <Image style={styles.image} source={{uri: item.image}} />
-                <Text>{item.title}, цена {item.price} рублей. </Text>
+                <View>
+                  <Image style={styles.image} source={{uri: item.image}} />
                 </View>
+                <View style={styles.info}>
+                  <Text>{item.title}, цена {item.price} рублей. </Text>
+                </View>
+              </View>
             </TouchableOpacity>
           )
         }}
@@ -33,14 +37,25 @@ const ProductList = ({navigation}) => {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#fff'
+  },
   product: {
-    marginBottom: 10,
-    borderWidth: 1,
-    padding: 5
+    borderBottomWidth: 1,
+    borderBottomColor: '#E6E6E6',
+    paddingTop: 10,
+    paddingBottom: 15,
+    flexDirection: 'row'
   },
   image: {
     width: 150,
-    height: 150
+    height: 150,
+    borderRadius: 10,
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: '#FFF1F1'
+  },
+  info: {
   }
 })
 

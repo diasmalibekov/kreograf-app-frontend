@@ -18,6 +18,11 @@ const myStack = () => {
       <Stack.Screen
         name='Товары'
         component={ProductList}
+        options={{
+          headerStyle: {
+            backgroundColor: '#FF4600'
+          }
+        }}
       />
       <Stack.Screen
         name='Получатель'
@@ -25,17 +30,15 @@ const myStack = () => {
         options={{
           headerStyle: {
             backgroundColor: '#FF4600',
-            borderBottomColor: '##DC2B00'
+            borderBottomColor: '##DC2B00',
+            height: 71
           },
           headerTitleStyle: {
             fontSize: 19,
              color: '#fff'
           },
-          headerBackImage: () => <Ionicons name="md-chevron-back-circle-outline" size={23} color="white" />,
-          headerBackTitleVisible: false,
-          headerContainerStyle: {
-            paddingLeft: 20
-          }
+          headerBackImage: () => <Ionicons name="md-chevron-back-circle-outline" size={23} color="white" style={{paddingLeft: 20}}/>,
+          headerBackTitleVisible: false
         }}
       />
     </Stack.Navigator>
