@@ -8,11 +8,9 @@ import PriceScroll from '../components/PriceScroll'
 const ProductDetail = ({route, navigation}) => {
   const [product, setProduct] = useState(null)
   const productId = route.params.id
-  console.log(productId)
 
   const getProduct = async id => {
     const response = await request.get(`/api/products/${id}`)
-    console.log(response)
     setProduct(response.data)
   }
 
@@ -28,12 +26,12 @@ const ProductDetail = ({route, navigation}) => {
     <ScrollView>
       <Countdown />
       <View style={styles.imageContainer}>
-        <Image style={styles.produtImage} source={{uri: product.image}} />
+        <Image style={styles.produсtImage} source={{uri: product.image}} />
       </View>
       <View style={styles.info}>
         <Text style={styles.title}>{product.title}</Text>
         <View style={styles.priceUnit}>
-          <Text style={styles.price}>{product.price}0 &#8381;</Text>
+          <Text style={styles.price}>{product.price} &#8381;</Text>
           <PriceScroll />
           <Image source={require('../icons/shop_basket.png')} style={styles.basketIcon} />
         </View>
@@ -57,7 +55,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff'
   },
-  produtImage: {
+  produсtImage: {
     width: '100%',
     height: 325
   },

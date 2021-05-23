@@ -23,7 +23,10 @@ const ProductList = ({navigation}) => {
                   <Image style={styles.image} source={{uri: item.image}} />
                 </View>
                 <View style={styles.info}>
-                  <Text>{item.title}, цена {item.price} рублей. </Text>
+                  <Image source={require('../icons/shop_basket.png')} style={styles.basketIcon} />
+                  <Text style={styles.infoPrice}>{item.price}&#8381;</Text>
+                  <Text style={styles.infoTitle}>{item.title}</Text>
+                  <Text style={styles.vendor}>Арт./Код: {item.vendorCode}</Text>
                 </View>
               </View>
             </TouchableOpacity>
@@ -56,6 +59,28 @@ const styles = StyleSheet.create({
     borderColor: '#FFF1F1'
   },
   info: {
+    paddingTop: 25,
+    paddingLeft: 10,
+    width: 150
+  },
+  basketIcon: {
+    position: 'absolute',
+    top: 5,
+    right: 0,
+    width: 32,
+    height: 32
+  },
+  infoPrice: {
+    fontWeight: 'bold',
+    fontSize: 19,
+    marginBottom: 10
+  },
+  infoTitle: {
+    fontSize: 16,
+    marginBottom: 45
+  },
+  vendor: {
+    color: 'grey'
   }
 })
 
